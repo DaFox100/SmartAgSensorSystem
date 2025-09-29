@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Agriculture Dashboard</title>
+  
+  <!-- Link to CSS file -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Smart Agriculture Dashboard</h1>
+  </header>
+
+  <!-- 📊 Sensor Stats Cards -->
+  <div id="dashboard" class="dashboard-container">
+    <div class="card">
+      <h3>Temperature</h3>
+      <p><span id="current-temp">--</span> °F</p>
+    </div>
+    <div class="card">
+      <h3>Humidity</h3>
+      <p><span id="current-humidity">--</span> %</p>
+    </div>
+    <div class="card">
+      <h3>Soil Moisture</h3>
+      <p><span id="current-soil">--</span></p>
+    </div>
+    <div class="card">
+      <h3>Last Updated</h3>
+      <p><span id="current-time">--</span></p>
+    </div>
+  </div>
+
+  <!-- 📈 Graph will go here -->
+  <div class="card full-width">
+    <h2>Sensor Data Graph</h2>
+    <div id="graph-container">
+      <!-- Your Plotly or chart code will mount here -->
+    </div>
+  </div>
+
+  <!-- Add more cards later (e.g., highs/lows, water log, etc.) -->
+
+  <!-- Link to JavaScript -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
