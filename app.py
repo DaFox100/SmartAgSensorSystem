@@ -7,7 +7,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 
-cred = credentials.Certificate("/Users/michaelfox/Programming/SmartAgSenorSystem/smartagsensordata-firebase-adminsdk.json")
+cred = credentials.Certificate("smartagsensordata-firebase-adminsdk.json")
 firebase_admin.initialize_app(cred,{ 'databaseURL':"https://smartagsensordata-default-rtdb.firebaseio.com/"})
 
 
@@ -271,7 +271,7 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="localhost", port=8081)
 
 
 print("\ngoodByeWorld")
