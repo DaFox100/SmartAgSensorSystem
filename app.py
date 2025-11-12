@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, Response, render_template
+from flask_cors import CORS
 from datetime import datetime
 import csv
 import os
@@ -7,11 +8,13 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 
+
 cred = credentials.Certificate("smartagsensordata-firebase-adminsdk.json")
 firebase_admin.initialize_app(cred,{ 'databaseURL':"https://smartagsensordata-default-rtdb.firebaseio.com/"})
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/data', methods=['POST'])

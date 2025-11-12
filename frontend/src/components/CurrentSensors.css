@@ -1,0 +1,67 @@
+/* --- LIVE badge top-right (SmartAg theme) --- */
+.live-badge {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  padding: 2px 10px;
+  border-radius: 6px;
+
+  background: rgba(33, 230, 182, 0.18);  /* subtle green glass */
+  border: 1px solid var(--border-strong);
+
+  color: var(--primary);                 /* neon green text */
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+
+  box-shadow: 0 0 12px rgba(33, 230, 182, 0.25);
+  backdrop-filter: blur(3px);
+}
+
+
+/* --- Sensor Grid --- */
+.current-sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+
+  padding-top: 18px;
+  padding-bottom: 6px;
+}
+
+/* Label text */
+.current-sensor-grid p {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+
+  color: var(--muted);   /* soft mint */
+  font-weight: 500;
+}
+
+/* Value text */
+.current-sensor-grid h4 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+
+  color: var(--text);    /* bright mint */
+  letter-spacing: -0.4px;
+}
+
+
+/* --- Responsive Layout --- */
+@media (max-width: 700px) {
+  .current-sensor-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .current-sensor-grid {
+    grid-template-columns: 1fr;
+  }
+}

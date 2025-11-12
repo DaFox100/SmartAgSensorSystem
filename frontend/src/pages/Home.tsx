@@ -1,7 +1,6 @@
-import React from "react";
 import "./Home.css";
 
-import CurrentSentors from "../components/CurrentSentors";
+import CurrentSentors from "../components/CurrentSensors";
 import SoilMoisture from "../components/SoilMoisture";
 import DailyHighsLows from "../components/DailyHighsLows";
 import IrrigationActions from "../components/IrrigationActions";
