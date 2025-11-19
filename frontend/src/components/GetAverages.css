@@ -1,0 +1,130 @@
+/* === Layout === */
+.averages-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.date-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* === Label & Inputs === */
+.input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* === Input styling (keep native picker) === */
+input[type="date"],
+input[type="number"] {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="date"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--glow);
+}
+
+/* Make the native icon match your dashboard theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(80%) sepia(20%) saturate(300%) hue-rotate(100deg);
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  color: var(--text);
+}
+
+/* === Button === */
+button {
+  align-self: flex-start;
+  background: var(--primary);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--glow);
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+button:hover {
+  background: var(--primary-2);
+  transform: translateY(-1px);
+}
+
+/* === Error text === */
+.error-text {
+  color: #ff7070;
+  font-size: 0.85rem;
+}
+
+/* === Section header === */
+.section-header {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+}
+
+/* === Results grid === */
+.results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.results > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* === Responsive === */
+@media (min-width: 900px) {
+  .results {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .value {
+    font-size: 1.5rem;
+  }
+}

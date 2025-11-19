@@ -1,0 +1,59 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--glow);
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+.card h3 {
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sensor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.btn:hover {
+  background: rgba(33, 230, 182, 0.1);
+}
+.btn.primary {
+  background: var(--primary);
+  color: #000;
+  font-weight: 600;
+}
+
+.zone-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
