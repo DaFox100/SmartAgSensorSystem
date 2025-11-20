@@ -1,0 +1,103 @@
+/* --- Daily High / Low Grid Layout --- */
+.daily-range-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    padding-top: 10px;
+  }
+  
+  .daily-range-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  /* --- High / Low Badges (match LIVE badge) --- */
+  .high-badge,
+  .low-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  
+    padding: 2px 10px;
+    border-radius: 6px;
+  
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(3px);
+  
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+  }
+  
+  /* High: same treatment as LIVE badge */
+  .high-badge {
+    color: var(--primary);                          /* neon green */
+    background: rgba(33, 230, 182, 0.18);          /* subtle green glass */
+    box-shadow: 0 0 12px rgba(33, 230, 182, 0.25); /* same glow */
+  }
+  
+  /* Low: mirrored red variant */
+  .low-badge {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.18);
+    box-shadow: 0 0 12px rgba(255, 107, 107, 0.25);
+  }
+  
+  .high-badge .arrow,
+  .low-badge .arrow {
+    font-size: 0.75rem;
+    margin-top: -1px;
+  }
+  
+  /* --- High/Low List Styling --- */
+  .range-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  /* Labels: echo current-sensor-grid p style */
+  .range-list .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  
+  /* Values: echo h5 style */
+  .range-list .value {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: var(--text);
+  }
+  
+  /* Color emphasis for high / low columns */
+  .sensor-high .value {
+    color: var(--primary); /* green emphasis */
+  }
+  
+  .sensor-low .value {
+    color: #ff6b6b;        /* red emphasis */
+  }
+  
+  /* --- Responsive --- */
+  @media (max-width: 700px) {
+    .daily-range-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .daily-range-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
