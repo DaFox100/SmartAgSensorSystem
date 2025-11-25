@@ -1,36 +1,37 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 
-export type DateRange = {
-  start: Date | null; // inclusive
-  end: Date | null;   // inclusive
-};
+type RangeMode = "24h" | "week" | "month" | "custom";
 
-type DateRangeContextValue = {
-  range: DateRange;
-  setRange: (r: DateRange) => void;
-  // convenient helpers
-  setStart: (d: Date | null) => void;
-  setEnd: (d: Date | null) => void;
-  reset: () => void;
-};
+interface DateRangeContextValue {
+  rangeMode: RangeMode;
+  setRangeMode: (mode: RangeMode) => void;
+  startDate: string | null; // "YYYY-MM-DD"
+  endDate: string | null;
+  setStartDate: (value: string | null) => void;
+  setEndDate: (value: string | null) => void;
+}
 
-const DateRangeContext = createContext<DateRangeContextValue | undefined>(undefined);
+const DateRangeContext = createContext<DateRangeContextValue | undefined>(
+  undefined
+);
 
-const DEFAULT_RANGE: DateRange = { start: null, end: null };
-
-export function DateRangeProvider({ children }: { children: React.ReactNode }) {
-  const [range, setRange] = useState<DateRange>(DEFAULT_RANGE);
-
-  const value = useMemo<DateRangeContextValue>(() => ({
-    range,
-    setRange,
-    setStart: (start) => setRange((prev) => ({ ...prev, start })),
-    setEnd: (end) => setRange((prev) => ({ ...prev, end })),
-    reset: () => setRange(DEFAULT_RANGE),
-  }), [range]);
+export function DateRangeProvider({ children }: { children: ReactNode }) {
+  // default: last 24h
+  const [rangeMode, setRangeMode] = useState<RangeMode>("24h");
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
 
   return (
-    <DateRangeContext.Provider value={value}>
+    <DateRangeContext.Provider
+      value={{
+        rangeMode,
+        setRangeMode,
+        startDate,
+        endDate,
+        setStartDate,
+        setEndDate,
+      }}
+    >
       {children}
     </DateRangeContext.Provider>
   );
@@ -38,6 +39,8 @@ export function DateRangeProvider({ children }: { children: React.ReactNode }) {
 
 export function useDateRange() {
   const ctx = useContext(DateRangeContext);
-  if (!ctx) throw new Error("useDateRange must be used within a DateRangeProvider");
+  if (!ctx) {
+    throw new Error("useDateRange must be used within a DateRangeProvider");
+  }
   return ctx;
 }

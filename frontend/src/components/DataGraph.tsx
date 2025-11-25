@@ -1,97 +1,74 @@
-// src/components/DataGraph.tsx
+import Plot from "react-plotly.js";
 import { useEffect, useState } from "react";
-import Card from "./Card";
-import "./Card.css";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
-
-interface SensorPoint {
-  timestamp: string;
-  [key: string]: number | string;
-}
+import { useDateRange } from "../context/DataRangeContext.tsx";
 
 export function DataGraph() {
-  // Define internally
-  const title = "Sensor Trends (24h)";
-  const endpoint = "get-graph";
+  interface SensorData {
+    timestamp: string;
+    temperature: number;
+    humidity: number;
+    soil_moisture: number;
+  }
 
-  const [data, setData] = useState<SensorPoint[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [data, setData] = useState<SensorData[]>([]);
+
+  // 🔥 Read start/end from the global date range card
+  const { startDate, endDate } = useDateRange();
+
+  // Dynamically build query string
+  const buildEndpoint = () => {
+    const params = new URLSearchParams();
+    if (startDate) params.append("start", startDate);
+    if (endDate) params.append("end", endDate);
+
+    const qs = params.toString();
+    return qs ? `/graph-data?${qs}` : `/graph-data`;
+  };
 
   useEffect(() => {
-    fetch(`http://localhost:8081/${endpoint}`)
-      .then((res) => res.json())
-      .then((json) => {
-        if (!Array.isArray(json) || json.length === 0) {
-          setError(true);
-        } else {
-          setData(json);
-        }
-      })
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-  }, []);
+    const endpoint = buildEndpoint();
 
-  const renderFallback = () => (
-    <div className="fallback-info">
-      <p>Data Unavailable</p>
-      <p>Temp: --</p>
-      <p>Humidity: --</p>
-      <p>Soil Moisture: --</p>
-    </div>
-  );
+    fetch(`http://localhost:8081${endpoint}`)
+      .then((res) => res.json())
+      .then(setData);
+  }, [startDate, endDate]); // 🔁 Refetch whenever dates change
 
   return (
-    <Card title="DataGraph">
-      <div className="card-header">
-        <h3>{title}</h3>
-      </div>
+    <div className="card full-width" style={{ height: "500px", width: "700px" }}>
+      <h2>Sensor Data Graph</h2>
 
-      <div className="card-content" style={{ height: 300 }}>
-        {loading && <div>Loading…</div>}
-
-        {!loading && error && renderFallback()}
-
-        {!loading && !error && data.length > 0 && (
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-              <XAxis
-                dataKey="timestamp"
-                tickFormatter={(value) =>
-                  new Date(value).toLocaleTimeString()
-                }
-              />
-              <YAxis />
-              <Tooltip
-                labelFormatter={(value) =>
-                  new Date(value).toLocaleString()
-                }
-              />
-              <Legend />
-
-              {/* Auto-detect all metrics except timestamp */}
-              {Object.keys(data[0])
-                .filter((key) => key !== "timestamp")
-                .map((metric) => (
-                  <Line
-                    key={metric}
-                    type="monotone"
-                    dataKey={metric}
-                    dot={false}
-                  />
-                ))}
-            </LineChart>
-          </ResponsiveContainer>
-        )}
-      </div>
-    </Card>
+      <Plot
+        data={[
+          {
+            x: data.map((p) => p.timestamp),
+            y: data.map((p) => p.temperature),
+            type: "scatter",
+            mode: "lines",
+            name: "Temperature",
+          },
+          {
+            x: data.map((p) => p.timestamp),
+            y: data.map((p) => p.humidity),
+            type: "scatter",
+            mode: "lines",
+            name: "Humidity",
+          },
+          {
+            x: data.map((p) => p.timestamp),
+            y: data.map((p) => p.soil_moisture),
+            type: "scatter",
+            mode: "lines",
+            name: "Soil Moisture",
+          },
+        ]}
+        layout={{
+          autosize: true,
+          height: 300,
+          margin: { l: 40, r: 20, t: 20, b: 40 },
+        }}
+        style={{ height: "100%", width: "100%" }}
+        useResizeHandler
+      />
+    </div>
   );
 }
