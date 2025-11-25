@@ -34,7 +34,7 @@ export function DataGraph() {
   }, [startDate, endDate]); // 🔁 Refetch whenever dates change
 
   return (
-    <div className="card full-width" style={{ height: "500px", width: "700px" }}>
+    <div className="card full-width" style={{ height: "500px", width: "1170px" }}>
       <h2>Sensor Data Graph</h2>
 
       <Plot
@@ -66,7 +66,7 @@ export function DataGraph() {
           height: 300,
           margin: { l: 40, r: 20, t: 20, b: 40 },
         }}
-        style={{ height: "100%", width: "100%" }}
+        style={{ height: "400px", width: "100%" }}
         useResizeHandler
       />
     </div>
