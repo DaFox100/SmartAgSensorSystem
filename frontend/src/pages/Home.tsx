@@ -3,10 +3,8 @@ import "./Home.css";
 import CurrentSentors from "../components/CurrentSensors";
 import SoilMoisture from "../components/SoilMoisture";
 import DailyHighsLows from "../components/DailyHighsLows";
-import IrrigationActions from "../components/IrrigationActions";
-import SoilZones from "../components/SoilZones";
-import SystemStatus from "../components/SystemStatus";
 import { DataGraph } from "../components/DataGraph";
+import { DateRangeCard } from "../components/DateRangeCard";
 
 export default function Home() {
   return (
@@ -18,9 +16,7 @@ export default function Home() {
         <CurrentSentors />
         <SoilMoisture />
         <DailyHighsLows />
-        <IrrigationActions />
-        <SoilZones />
-        <SystemStatus />
+        <DateRangeCard/>
         <DataGraph/>
       </div>
     </div>
