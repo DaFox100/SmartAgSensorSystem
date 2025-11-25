@@ -51,6 +51,14 @@
   color: var(--text);    /* bright mint */
   letter-spacing: -0.4px;
 }
+.current-sensor-grid h5 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--text);    /* bright mint */
+  letter-spacing: -0.4px;
+}
 
 
 /* --- Responsive Layout --- */

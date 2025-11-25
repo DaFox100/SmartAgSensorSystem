@@ -6,6 +6,7 @@ import DailyHighsLows from "../components/DailyHighsLows";
 import IrrigationActions from "../components/IrrigationActions";
 import SoilZones from "../components/SoilZones";
 import SystemStatus from "../components/SystemStatus";
+import { DataGraph } from "../components/DataGraph";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <IrrigationActions />
         <SoilZones />
         <SystemStatus />
+        <DataGraph/>
       </div>
     </div>
   );

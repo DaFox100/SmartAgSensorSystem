@@ -8,7 +8,21 @@ export default function CurrentSensors() {
     soil_moisture: "--",
     temperature: "--",
     humidity: "--",
+    timestamp: "--",
   });
+
+  function formatTimestamp(isoString: string) {
+    const date = new Date(isoString);
+    return date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+  }
+  
 
   useEffect(() => {
     async function fetchLatest() {
@@ -20,6 +34,7 @@ export default function CurrentSensors() {
           soil_moisture: data.soil_moisture ?? "--",
           temperature: data.temperature ?? "--",
           humidity: data.humidity ?? "--",
+          timestamp: data.timestamp ? formatTimestamp(data.timestamp) : "--",
         });
       } catch (err) {
         console.error("Error fetching latest:", err);
@@ -40,17 +55,21 @@ export default function CurrentSensors() {
       <div className="current-sensor-grid">
         <div>
           <p>Soil Moisture</p>
-          <h4>{sensorData.soil_moisture}%</h4>
+          <h4>{sensorData.soil_moisture}</h4>
         </div>
 
         <div>
           <p>Air Temp</p>
-          <h4>{sensorData.temperature}°C</h4>
+          <h4>{sensorData.temperature}°F</h4>
         </div>
 
         <div>
           <p>Humidity</p>
           <h4>{sensorData.humidity}%</h4>
+        </div>
+        <div>
+          <p>TimeStamp</p>
+          <h5>{sensorData.timestamp}</h5>
         </div>
       </div>
     </Card>
