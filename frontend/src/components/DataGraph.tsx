@@ -2,6 +2,8 @@ import Plot from "react-plotly.js";
 import { useEffect, useState } from "react";
 import { useDateRange } from "../context/DataRangeContext.tsx";
 
+
+
 export function DataGraph() {
   interface SensorData {
     timestamp: string;

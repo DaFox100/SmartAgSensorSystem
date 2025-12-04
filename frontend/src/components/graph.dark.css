@@ -1,0 +1,65 @@
+/* ===========================
+   Dark Mode Graph Card
+   SmartAg Sensor Dashboard
+   =========================== */
+
+   .graph-card-dark {
+    background-color: #111827;   /* dark slate */
+    color: #e5e7eb;              /* light text */
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Title inside the graph card */
+  .graph-card-dark h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #f3f4f6;
+    font-weight: 600;
+  }
+  
+  /* Plotly container inside the card */
+  .graph-card-dark .js-plotly-plot {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Optional: Buttons for date range filters inside cards */
+  .graph-card-dark button {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    padding: 6px 12px;
+    color: #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .graph-card-dark button:hover {
+    background-color: #374151;
+  }
+  
+  .graph-card-dark button.active {
+    background-color: #2563eb;
+    border-color: #1d4ed8;
+    color: white;
+  }
+  
+  /* If you embed custom inputs */
+  .graph-card-dark input[type="date"] {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    color: #e5e7eb;
+    padding: 6px;
+    border-radius: 6px;
+  }
+  
+  /* Small text summary below date inputs */
+  .graph-card-dark small {
+    color: #9ca3af;
+  }
+  

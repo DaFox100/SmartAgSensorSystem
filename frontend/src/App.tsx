@@ -1,14 +1,50 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import NavBar from "./components/NavBar";
+
 import Home from "./pages/Home";
+import AdminPage from "./pages/AdminPage";
+import WorkerPage from "./pages/WorkerPage";
+import LoginPage from "./pages/LoginPage";
+
+
+import "./App.css";              // ✅ add this line
+
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Layout />
     </Router>
+  );
+}
+
+function Layout() {
+  const location = useLocation();
+
+  // Hide navbar on login page if you want:
+  const hideNavbar = location.pathname === "/loginPage";
+
+  return (
+    <>
+      {!hideNavbar && <NavBar />}
+
+      {/* Global layout wrapper */}
+      <div className="app-container">
+        <Routes>
+          {/* Default path redirect */}
+          <Route path="/" element={<Navigate to="/home" replace />} />
+
+          {/* Your actual pages */}
+          <Route path="/home" element={<Home />} />
+          <Route path="/adminPage" element={<AdminPage />} />
+          <Route path="/workerPage" element={<WorkerPage />} />
+          <Route path="/loginPage" element={<LoginPage />} />
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
