@@ -6,16 +6,18 @@ import AdminPage from "./pages/AdminPage";
 import WorkerPage from "./pages/WorkerPage";
 import LoginPage from "./pages/LoginPage";
 
-
+import { DateRangeProvider } from "./context/DataRangeContext";
 import "./App.css";              // ✅ add this line
 
 
 function App() {
   return (
-    <Router>
-      <Layout />
-    </Router>
-  );
+    <DateRangeProvider>
+       <Router>
+        <Layout />
+      </Router>
+    </DateRangeProvider>
+    );
 }
 
 function Layout() {

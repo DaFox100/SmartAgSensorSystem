@@ -28,7 +28,7 @@
 /* RIGHT SIDE LINKS */
 .nav-links {
   display: flex;
-  /gap: 1.25rem;
+  gap: 1.25rem;
 }
 
 .nav-links a {
