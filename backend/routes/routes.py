@@ -10,6 +10,14 @@ from controllers.get_highs_lows import get_highs_lows
 from controllers.get_weekly_highs_lows import get_weekly_highs_lows
 from controllers.get_graph_data import get_graph_data
 
+from controllers.farm_hierarchy import (
+    add_farm,
+    add_field,
+    add_bed,
+    add_sensor_node
+)
+
+
 routes = Blueprint("routes", __name__)
 
 # DATA
@@ -17,6 +25,39 @@ routes.add_url_rule("/data", methods=["POST"], view_func=receive_data)
 routes.add_url_rule("/data", methods=["GET"], view_func=get_data)
 routes.add_url_rule("/clear", methods=["POST"], view_func=clear_data)
 routes.add_url_rule("/latest", methods=["GET"], view_func=get_latest)
+
+# ============================
+# FARM HIERARCHY ROUTES
+# ============================
+
+# Add a new Farm
+routes.add_url_rule(
+    "/farms",
+    methods=["POST"],
+    view_func=add_farm
+)
+
+# Add a Field to a Farm
+routes.add_url_rule(
+    "/farms/<farm_id>/fields",
+    methods=["POST"],
+    view_func=add_field
+)
+
+# Add a Bed to a Field
+routes.add_url_rule(
+    "/farms/<farm_id>/fields/<field_id>/beds",
+    methods=["POST"],
+    view_func=add_bed
+)
+
+# Add a SensorNode to a Bed
+routes.add_url_rule(
+    "/farms/<farm_id>/fields/<field_id>/beds/<bed_id>/sensorNodes",
+    methods=["POST"],
+    view_func=add_sensor_node
+)
+
 
 # CSV
 routes.add_url_rule("/data.csv", methods=["GET"], view_func=download_csv)

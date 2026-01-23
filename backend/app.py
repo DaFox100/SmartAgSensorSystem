@@ -7,6 +7,10 @@ CORS(app)
 
 app.register_blueprint(routes)
 
+print("=== URL MAP ===")
+print(app.url_map)
+
+
 @app.route("/")
 def home():
     return "running"
