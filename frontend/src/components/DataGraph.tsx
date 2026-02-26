@@ -30,7 +30,7 @@ export function DataGraph() {
   useEffect(() => {
     const endpoint = buildEndpoint();
 
-    fetch(`http://localhost:8081${endpoint}`)
+    fetch(`${import.meta.env.VITE_API_URL}${endpoint}`)
       .then((res) => res.json())
       .then(setData);
   }, [startDate, endDate]); // 🔁 Refetch whenever dates change

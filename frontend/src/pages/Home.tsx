@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <h1 className="home-title">Smart Agriculture Dashboard</h1>
-     
+
 
       <div className="home-grid">
         <CurrentSentors />

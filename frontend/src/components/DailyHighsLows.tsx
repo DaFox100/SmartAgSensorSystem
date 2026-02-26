@@ -19,7 +19,7 @@ export default function DailyHighsLows() {
   useEffect(() => {
     async function fetchDailyHighsLows() {
       try {
-        const res = await fetch(`http://localhost:8081/highs_lows?date=${today}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/highs_lows?date=${today}`);
         const data = await res.json();
 
         setSensorData({

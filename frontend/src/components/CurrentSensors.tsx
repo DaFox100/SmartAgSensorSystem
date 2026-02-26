@@ -27,7 +27,7 @@ export default function CurrentSensors() {
   useEffect(() => {
     async function fetchLatest() {
       try {
-        const res = await fetch("http://localhost:8081/latest");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/latest`);
         const data = await res.json();
 
         setSensorData({
