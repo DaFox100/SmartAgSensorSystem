@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Card from "./Card";
-import { Calendar as CalendarIcon } from "lucide-react"; // calendar icon
 import "./GetAverages.css";
 
 interface AveragesData {
@@ -28,7 +27,7 @@ export default function GetAverages() {
 
     try {
       const res = await fetch(
-        `http://localhost:8081/average?start=${startDate}&end=${endDate}`
+        `${import.meta.env.VITE_API_URL}/average?start=${startDate}&end=${endDate}`
       );
 
       if (!res.ok) throw new Error("Failed to fetch averages");
