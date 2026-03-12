@@ -1,2 +1,7 @@
 smartagsensordata-firebase-adminsdk.json
+venv/
+backend/venv/
+*.env
+__pycache__/
+*.pyc
 
