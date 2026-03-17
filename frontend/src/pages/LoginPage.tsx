@@ -1,6 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./LoginPage.css";
+
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8081";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -8,12 +11,12 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
 
-    // Basic validation
     if (!username.trim() || !password.trim()) {
       setError("Please enter both username and password");
       return;
@@ -21,12 +24,26 @@ const LoginPage = () => {
 
     setIsLoading(true);
 
-    // Simulate login (replace with actual backend call later)
-    setTimeout(() => {
+    try {
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error ?? "Login failed");
+      } else {
+        login(data.user);
+        navigate("/home");
+      }
+    } catch {
+      setError("Could not reach the server. Is the backend running?");
+    } finally {
       setIsLoading(false);
-      // For now, accept any credentials and navigate to home
-      navigate("/home");
-    }, 1000);
+    }
   };
 
   return (
@@ -74,7 +91,15 @@ const LoginPage = () => {
         </form>
 
         <div className="login-footer">
-          <p>Demo Mode: Enter any credentials to continue</p>
+          <p>
+            No account?{" "}
+            <span
+              onClick={() => navigate("/signupPage")}
+              style={{ color: "var(--primary)", cursor: "pointer" }}
+            >
+              Sign up
+            </span>
+          </p>
         </div>
       </div>
     </div>
