@@ -12,6 +12,8 @@ from controllers.get_graph_data import get_graph_data
 
 from controllers.signup import signup
 from controllers.login import login
+from controllers.create_worker import create_worker
+from controllers.get_workers import get_workers
 
 from controllers.farm_hierarchy import (
     add_farm,
@@ -26,6 +28,8 @@ routes = Blueprint("routes", __name__)
 # AUTH
 routes.add_url_rule("/signup", methods=["POST"], view_func=signup)
 routes.add_url_rule("/login", methods=["POST"], view_func=login)
+routes.add_url_rule("/admin/create-worker", methods=["POST"], view_func=create_worker)
+routes.add_url_rule("/admin/workers", methods=["GET"], view_func=get_workers)
 
 # DATA
 routes.add_url_rule("/data", methods=["POST"], view_func=receive_data)

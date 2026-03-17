@@ -1,0 +1,198 @@
+.admin-page {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-title {
+  color: var(--primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.admin-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: var(--glow);
+}
+
+.admin-card h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.admin-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.admin-field input {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.admin-field input:focus {
+  border-color: var(--primary);
+}
+
+.password-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.password-row input {
+  flex: 1;
+}
+
+.generate-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: var(--primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.generate-btn:hover {
+  background: rgba(33, 230, 182, 0.1);
+  border-color: var(--primary);
+}
+
+.admin-submit {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  border: none;
+  border-radius: 8px;
+  padding: 0.875rem;
+  color: var(--bg);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 0.25rem;
+}
+
+.admin-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(33, 230, 182, 0.3);
+}
+
+.admin-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-error {
+  background: rgba(255, 82, 82, 0.15);
+  border: 1px solid rgba(255, 82, 82, 0.4);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: #ffb3b3;
+  font-size: 0.9rem;
+}
+
+.credentials-card {
+  margin-top: 1.5rem;
+  background: rgba(33, 230, 182, 0.08);
+  border: 1px solid rgba(33, 230, 182, 0.35);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.credentials-label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.credentials-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cred-key {
+  font-size: 0.85rem;
+  color: var(--muted);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.cred-val {
+  font-size: 1rem;
+  color: var(--text);
+  font-family: monospace;
+  background: var(--bg-alt);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.credentials-note {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.admin-muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.workers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.workers-table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+
+.workers-table td {
+  padding: 0.75rem;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.workers-table tr:last-child td {
+  border-bottom: none;
+}
