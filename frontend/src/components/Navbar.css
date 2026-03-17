@@ -61,3 +61,30 @@
   background: rgba(6, 16, 20, 0.85);
 }
 
+.nav-username {
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(6, 16, 20, 0.85);
+}
+
+.nav-logout {
+  background: transparent;
+  border: 1px solid rgba(255, 82, 82, 0.5);
+  border-radius: 999px;
+  color: #ffb3b3;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-logout:hover {
+  background: rgba(255, 82, 82, 0.15);
+  border-color: rgba(255, 82, 82, 0.8);
+}
+

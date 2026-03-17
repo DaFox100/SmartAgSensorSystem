@@ -38,16 +38,7 @@ def signup():
     if role not in valid_roles:
         return jsonify({"error": f"Invalid role. Must be one of: {', '.join(valid_roles)}"}), 400
 
-    # Check if email already exists
     users_ref = db.reference("/users")
-    existing_users = users_ref.order_by_child("email").equal_to(email).get()
-    if existing_users:
-        return jsonify({"error": "Email already registered"}), 409
-
-    # Check if username already exists
-    existing_username = users_ref.order_by_child("username").equal_to(username).get()
-    if existing_username:
-        return jsonify({"error": "Username already taken"}), 409
 
     # Hash the password
     salt = bcrypt.gensalt()

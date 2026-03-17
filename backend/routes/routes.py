@@ -10,6 +10,9 @@ from controllers.get_highs_lows import get_highs_lows
 from controllers.get_weekly_highs_lows import get_weekly_highs_lows
 from controllers.get_graph_data import get_graph_data
 
+from controllers.signup import signup
+from controllers.login import login
+
 from controllers.farm_hierarchy import (
     add_farm,
     add_field,
@@ -19,6 +22,10 @@ from controllers.farm_hierarchy import (
 
 
 routes = Blueprint("routes", __name__)
+
+# AUTH
+routes.add_url_rule("/signup", methods=["POST"], view_func=signup)
+routes.add_url_rule("/login", methods=["POST"], view_func=login)
 
 # DATA
 routes.add_url_rule("/data", methods=["POST"], view_func=receive_data)
